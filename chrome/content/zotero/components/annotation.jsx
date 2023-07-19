@@ -26,7 +26,7 @@
 'use strict';
 
 import React, { memo } from 'react';
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -65,9 +65,11 @@ function AnnotationBox({ data }) {
 Zotero.AnnotationBox = memo(AnnotationBox);
 
 Zotero.AnnotationBox.render = (domEl, props) => {
-	ReactDOM.render(<AnnotationBox { ...props } />, domEl);
+	const root = createRoot(domEl);
+	root.render(<AnnotationBox { ...props } />);
 };
 
 Zotero.AnnotationBox.destroy = (domEl) => {
-	ReactDOM.unmountComponentAtNode(domEl);
+	const root = createRoot(domEl);
+	root.unmount();
 };
