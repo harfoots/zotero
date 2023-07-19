@@ -26,7 +26,7 @@
 'use strict';
 
 import React, { memo } from 'react';
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -76,10 +76,12 @@ Zotero.CreateParent = memo(CreateParent);
 
 
 Zotero.CreateParent.destroy = (domEl) => {
-	ReactDOM.unmountComponentAtNode(domEl);
+	const root = createRoot(domEl);
+	root.unmount();
 };
 
 
 Zotero.CreateParent.render = (domEl, props) => {
-	ReactDOM.render(<CreateParent { ...props } />, domEl);
+	const root = createRoot(domEl);
+	root.render(<CreateParent { ...props } />);
 };
